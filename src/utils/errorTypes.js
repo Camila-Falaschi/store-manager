@@ -1,7 +1,7 @@
 // Para o desenvolvimento dessa listagem de erros foi consultado o projeto TrybeCar desenvolvido nas aulas do curso da Trybe
 
 const errorTypes = {
-  // EMPTY_VALUE: 400,
+  EMPTY_VALUE: 400,
   PRODUCT_NOT_FOUND: 404,
   INVALID_VALUE: 422,
 };

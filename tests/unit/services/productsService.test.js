@@ -3,7 +3,7 @@ const sinon = require("sinon");
 
 const { productsModel } = require("../../../src/models");
 const productsService = require("../../../src/services/productsService");
-const { products, productDetail } = require("../mocks/mockService");
+const { products, productDetail, newProduct } = require("../mocks/mockService");
 
 describe("Testes de unidade do service de produtos", function () {
   describe("Listando produtos", function () {
@@ -29,6 +29,22 @@ describe("Testes de unidade do service de produtos", function () {
     });
   });
 
+  describe('Cadastrando novo produto', function () {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('Cadastro de produto', async function () {
+      sinon.stub(productsModel, "insert").resolves([{ insertId: newProduct.id }]);
+      sinon.stub(productsModel, "productDetail").resolves(newProduct);
+
+      const result = await productsService.newProductRegistration("ProdutoX");
+
+      expect(result.type).to.equal(null);
+      expect(result.message).to.deep.equal(newProduct);
+    });
+  })
+
   describe("Atribuições de erros", function () {
     afterEach(() => {
       sinon.restore();
@@ -40,7 +56,7 @@ describe("Testes de unidade do service de produtos", function () {
       const error = await productsService.getProductById(0);
 
       expect(error.type).to.equal("INVALID_VALUE");
-      expect(error.message).to.equal(`\"productId\" must be greater than or equal to 1`);
+      expect(error.message).to.equal('\"id\" must be greater than or equal to 1');
     });
 
     it("Em caso de erro por id não encontrado o model retorna uma messagem", async function () {
@@ -50,6 +66,20 @@ describe("Testes de unidade do service de produtos", function () {
 
       expect(error.type).to.equal("PRODUCT_NOT_FOUND");
       expect(error.message).to.equal("Product not found");
+    });
+
+    it("Erro ao tentar cadastrar um novo produto sem nome", async function () {
+      const result = await productsService.newProductRegistration('');
+
+      expect(result.type).to.equal("EMPTY_VALUE");
+      expect(result.message).to.equal('"name" is required');
+    })
+
+    it("Erro ao tentar cadastrar um novo produto com menos de 5 caracteres", async function () {
+      const result = await productsService.newProductRegistration('a');
+
+      expect(result.type).to.equal("INVALID_VALUE");
+      expect(result.message).to.equal('"name" length must be at least 5 characters long');
     });
   });
 });

@@ -13,6 +13,11 @@ const products = [
   }
 ];
 
+const newProduct = {
+  id: 4,
+  name: "ProdutoX",
+};
+
 const returnServiceAllProducts = {
   status: 200,
   message: products,
@@ -23,7 +28,14 @@ const returnServiceByProductId = {
   message: products[2],
 };
 
+const returnServiceNewProduct = {
+  status: 200,
+  message: newProduct,
+};
+
 module.exports = {
+  newProduct,
   returnServiceAllProducts,
   returnServiceByProductId,
+  returnServiceNewProduct,
 };

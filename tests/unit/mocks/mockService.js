@@ -18,7 +18,13 @@ const productDetail = [{
   name: "Traje de encolhimento",
 }];
 
+const newProduct = {
+  id: 4,
+  name: "ProdutoX",
+};
+
 module.exports = {
   products,
   productDetail,
+  newProduct,
 };
