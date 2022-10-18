@@ -50,15 +50,6 @@ describe("Testes de unidade do service de produtos", function () {
       sinon.restore();
     });
 
-    it("Em caso de erro por id inválido o model retorna uma messagem", async function () {
-      sinon.stub(productsModel, "productDetail").resolves(undefined);
-
-      const error = await productsService.getProductById(0);
-
-      expect(error.type).to.equal("INVALID_VALUE");
-      expect(error.message).to.equal('\"id\" must be greater than or equal to 1');
-    });
-
     it("Em caso de erro por id não encontrado o model retorna uma messagem", async function () {
       sinon.stub(productsModel, "productDetail").resolves(undefined);
 
@@ -66,20 +57,6 @@ describe("Testes de unidade do service de produtos", function () {
 
       expect(error.type).to.equal("PRODUCT_NOT_FOUND");
       expect(error.message).to.equal("Product not found");
-    });
-
-    it("Erro ao tentar cadastrar um novo produto sem nome", async function () {
-      const result = await productsService.newProductRegistration('');
-
-      expect(result.type).to.equal("EMPTY_VALUE");
-      expect(result.message).to.equal('"name" is required');
-    })
-
-    it("Erro ao tentar cadastrar um novo produto com menos de 5 caracteres", async function () {
-      const result = await productsService.newProductRegistration('a');
-
-      expect(result.type).to.equal("INVALID_VALUE");
-      expect(result.message).to.equal('"name" length must be at least 5 characters long');
     });
   });
 });

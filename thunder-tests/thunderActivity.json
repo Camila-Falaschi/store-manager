@@ -8,12 +8,12 @@
     "method": "PUT",
     "sortNum": 0,
     "created": "2022-10-17T23:37:36.783Z",
-    "modified": "2022-10-18T01:52:41.641Z",
+    "modified": "2022-10-18T17:53:21.834Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"aaaaa\"\n}",
+      "raw": "{\n  \"name\": \"ProdutoX\"\n}",
       "form": []
     },
     "tests": []
