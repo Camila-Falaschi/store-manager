@@ -33,9 +33,30 @@ const returnServiceNewProduct = {
   message: newProduct,
 };
 
+const newSale = {
+  id: 3,
+  itemsSold: [
+    {
+      productId: 1,
+      quantity: 1,
+    },
+    {
+      productId: 2,
+      quantity: 5,
+    },
+  ],
+};
+
+const returnServiceNewSale = {
+  status: 201,
+  message: newSale,
+};
+
 module.exports = {
   newProduct,
   returnServiceAllProducts,
   returnServiceByProductId,
   returnServiceNewProduct,
+  newSale,
+  returnServiceNewSale,
 };

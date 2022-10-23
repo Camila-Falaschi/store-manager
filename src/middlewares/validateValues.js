@@ -1,4 +1,8 @@
-const { newProductSchema, productIdSchema } = require('../utils/schemas');
+const {
+  newProductSchema,
+  productIdSchema,
+  newSale,
+} = require('../utils/schemas');
 
 const validateId = (req, res, next) => {
   const { id } = req.params;
@@ -22,7 +26,22 @@ const validateProduct = (req, res, next) => {
   next();
 };
 
+const validateSale = (req, res, next) => {
+  const array = req.body;
+
+  const validation = array.map((item) => newSale.validate(item));
+  validation.forEach((element) => {
+    if (Object.keys(element).includes('error')) {
+      const status = element.error.message.includes('quantity') ? 422 : 400;
+      return res.status(status).json({ message: element.error.message });
+    }
+  });
+
+  next();
+};
+
 module.exports = {
   validateId,
   validateProduct,
+  validateSale,
 };

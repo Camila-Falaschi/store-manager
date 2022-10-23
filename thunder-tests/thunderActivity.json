@@ -5,10 +5,10 @@
     "containerId": "",
     "name": "localhost:3000/products",
     "url": "localhost:3000/products",
-    "method": "PUT",
+    "method": "POST",
     "sortNum": 0,
     "created": "2022-10-17T23:37:36.783Z",
-    "modified": "2022-10-18T17:53:21.834Z",
+    "modified": "2022-10-22T23:57:46.100Z",
     "headers": [],
     "params": [],
     "body": {
@@ -30,6 +30,58 @@
     "modified": "2022-10-18T01:19:50.568Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "857dd6cd-39f4-4d4a-8919-019c2fa52e18",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/services",
+    "url": "localhost:3000/services",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-10-22T23:59:26.939Z",
+    "modified": "2022-10-22T23:59:26.981Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "277b1234-a6a1-4b98-9ad9-6ed1f41fcfb7",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/services",
+    "url": "localhost:3000/services",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-10-22T23:59:41.232Z",
+    "modified": "2022-10-22T23:59:41.268Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 5\n  }\n]",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "96ba4cbf-0930-43b0-a0c4-eda15342af0a",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/sales",
+    "url": "localhost:3000/sales",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-10-22T23:59:53.959Z",
+    "modified": "2022-10-23T04:45:26.002Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  }\n]",
+      "form": []
+    },
     "tests": []
   }
 ]

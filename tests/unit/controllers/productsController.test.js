@@ -76,9 +76,9 @@ describe("Testes de unidade do controller de produtos", function () {
       const req = { params: { id: 0 } };
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
-      sinon.stub(productsService, "getProductById").resolves({
-        type: "INVALID_VALUE",
-        message: '\"productId\" must be greater than or equal to 1',
+      sinon.stub(productsController, "getProductById").resolves({
+        status: 422,
+        message: '"productId" must be greater than or equal to 1',
       });
 
       await productsController.getProductById(req, res);
@@ -108,8 +108,8 @@ describe("Testes de unidade do controller de produtos", function () {
       const req = { body: { name: "" } };
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
-      sinon.stub(productsService, "newProductRegistration").resolves({
-        type: "EMPTY_VALUE",
+      sinon.stub(productsController, "newProductRegistration").resolves({
+        status: 400,
         message: '"name" is required',
       });
 
@@ -117,22 +117,22 @@ describe("Testes de unidade do controller de produtos", function () {
 
       expect(res.status).to.have.been.calledWith(400);
       expect(res.json).to.have.been.calledWith('"name" is required');
+    });
 
-      it("Se o nome do novo produto possui menos de 5 caracteres", async function () {
-        const res = {};
-        const req = { body: { name: 'a' } };
-        res.status = sinon.stub().returns(res);
-        res.json = sinon.stub().returns();
-        sinon.stub(productsService, "newProductRegistration").resolves({
-          type: "INVALID_VALUE",
-          message: '"name" length must be at least 5 characters long',
-        });
-
-        await productsController.newProductRegistration(req, res);
-
-        expect(res.status).to.have.been.calledWith(422);
-        expect(res.json).to.have.been.calledWith('"name" length must be at least 5 characters long');
+    it("Se o nome do novo produto possui menos de 5 caracteres", async function () {
+      const res = {};
+      const req = { body: { name: 'a' } };
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon.stub(productsController, "newProductRegistration").resolves({
+        status: 422,
+        message: '"name" length must be at least 5 characters long',
       });
+
+      await productsController.newProductRegistration(req, res);
+
+      expect(res.status).to.have.been.calledWith(422);
+      expect(res.json).to.have.been.calledWith('"name" length must be at least 5 characters long');
     });
   });
 });

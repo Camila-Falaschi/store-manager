@@ -2,7 +2,7 @@ const model = require('../../models');
 
 const { productsModel } = model;
 
-const validateId = async (id) => {
+const validateProductId = async (id) => {
   const productDetail = await productsModel.productDetail(id);
   if (!productDetail) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
 
@@ -10,5 +10,5 @@ const validateId = async (id) => {
 };
 
 module.exports = {
-  validateId,
+  validateProductId,
 };
