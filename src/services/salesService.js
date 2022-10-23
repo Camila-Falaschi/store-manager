@@ -10,19 +10,19 @@ const newSalesRegistration = async (sales) => {
 
   const resultValidateIds = await Promise.all(validateIds);
 
-  const checkResult = resultValidateIds.every((error) => error.type === null);
-  if (!checkResult) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
-  const saleId = await salesModel.insertNewSaleDate();
+  if (resultValidateIds.every((error) => error.type === null)) {
+    const saleId = await salesModel.insertNewSaleDate();
 
-  const registration = sales.map((item) => {
-    const { productId, quantity } = item;
-    return salesModel.insertSaleDetails(saleId, productId, quantity);
-  });
-  await Promise.all(registration);
-
-  const data = await salesModel.findBySaleId(saleId);
-
-  return { type: null, message: data };
+    const registration = sales.map((item) => {
+      const { productId, quantity } = item;
+      return salesModel.insertSaleDetails(saleId, productId, quantity);
+    });
+    await Promise.all(registration);
+    const data = await salesModel.findBySaleId(saleId);
+    const result = { id: saleId, itemsSold: data };
+    return { type: null, message: result };
+  }
+  return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
 };
 
 module.exports = {

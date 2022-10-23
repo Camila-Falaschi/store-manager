@@ -19,5 +19,4 @@ module.exports = {
   productIdSchema,
   newProductSchema,
   newSale,
-  // quantitySchema,
 };

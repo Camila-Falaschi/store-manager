@@ -1,13 +1,13 @@
 const salesService = require('../services/salesService');
-const { errorTypes } = require('../utils/errorTypes');
+const { errorStatus } = require('../utils/errorTypes');
 
 const newSalesRegistration = async (req, res) => {
   const array = req.body;
 
   const { type, message } = await salesService.newSalesRegistration(array);
-  if (type) return res.status(errorTypes.errorStatus(type)).json(message);
+  if (type) return res.status(errorStatus(type)).json({ message: 'Product not found' });
 
-  res.status(201).json(message);
+  return res.status(201).json(message);
 };
 
 module.exports = {

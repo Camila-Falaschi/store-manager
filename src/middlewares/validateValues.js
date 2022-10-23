@@ -30,12 +30,13 @@ const validateSale = (req, res, next) => {
   const array = req.body;
 
   const validation = array.map((item) => newSale.validate(item));
-  validation.forEach((element) => {
-    if (Object.keys(element).includes('error')) {
-      const status = element.error.message.includes('quantity') ? 422 : 400;
-      return res.status(status).json({ message: element.error.message });
-    }
-  });
+
+  const result = validation.find((element) => Object.keys(element).includes('error'));
+
+  if (result) {
+    const status = result.error.message.includes('greater') ? 422 : 400;
+    return res.status(status).json({ message: result.error.message });
+  }
 
   next();
 };

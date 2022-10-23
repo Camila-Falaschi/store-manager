@@ -74,12 +74,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-10-22T23:59:53.959Z",
-    "modified": "2022-10-23T04:45:26.002Z",
+    "modified": "2022-10-23T18:39:57.689Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  }\n]",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 30,\n    \"quantity\": 1\n  }\n]",
       "form": []
     },
     "tests": []
