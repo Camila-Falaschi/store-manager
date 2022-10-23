@@ -23,6 +23,12 @@ const newProduct = {
   name: "ProdutoX",
 };
 
+const saleDetails = {
+  saleId: 3,
+  productId: 1,
+  quantity: 1,
+};
+
 const newSale = {
   id: 3,
   itemsSold: [
@@ -34,12 +40,13 @@ const newSale = {
       productId: 2,
       quantity: 5,
     },
-  ],
+  ]
 };
 
 module.exports = {
   products,
   productDetail,
   newProduct,
+  saleDetails,
   newSale,
 };
