@@ -50,14 +50,11 @@ const insertNewSaleDate = async () => {
   return insertId;
 };
 
-const insertSaleDetails = async (saleId, productId, quantity) => {
-  const [{ affectedRows }] = await connection.execute(
+const insertSaleDetails = async (saleId, productId, quantity) => connection.execute(
     `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) 
     VALUES (?, ?, ?);`,
     [saleId, productId, quantity],
   );
-  return affectedRows;
-};
 
 module.exports = {
   getAllSalesDetails,

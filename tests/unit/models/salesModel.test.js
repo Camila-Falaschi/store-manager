@@ -5,7 +5,7 @@ const connection = require("../../../src/models/connection");
 const salesModel = require("../../../src/models/salesModel");
 
 const { newSales, saleDetails, allSales,
-  returnSaleById, saleDate } = require("../mocks/mockModel");
+  returnSaleById, saleDate, saleInsert } = require("../mocks/mockModel");
 
 describe("Testes de unidade do model de vendas", function () {
   describe("Cadastrando vendas", async function () {
@@ -22,11 +22,11 @@ describe("Testes de unidade do model de vendas", function () {
     });
 
     it("Realizando uma operação INSERT com o model sales_products para cadastrar detalhes da venda", async function () {
-      sinon.stub(connection, "execute").resolves([{ affectedRows: 1 }]);
+      sinon.stub(connection, "execute").resolves(saleInsert);
 
       const result = await salesModel.insertSaleDetails(saleDetails);
       
-      expect(result).to.equal(1);
+      expect(result[0].affectedRows).to.be.deep.equal(1);
     });
 
     it("Buscando detalhes de uma venda especifica", async function () {

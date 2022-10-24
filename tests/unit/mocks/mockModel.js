@@ -18,6 +18,19 @@ const newProduct = {
   name: "ProdutoX",
 };
 
+const productUpdated = [
+  {
+    fieldCount: 0,
+    affectedRows: 1,
+    insertId: 0,
+    info: 'Rows matched: 1  Changed: 1  Warnings: 0',
+    serverStatus: 2,
+    warningStatus: 0,
+    changedRows: 1,
+  },
+  undefined,
+]
+
 const saleDetails = {
   saleId: 3,
   productId: 1,
@@ -74,12 +87,27 @@ const saleDate = {
   date: "2022-10-23 21:52:48",
 }
 
+const saleInsert = [
+  {
+    fieldCount: 0,
+    affectedRows: 1,
+    insertId: 0,
+    info: '',
+    serverStatus: 2,
+    warningStatus: 0
+  },
+  undefined
+]
+
+
 module.exports = {
   products,
   newProduct,
+  productUpdated,
   saleDetails,
   newSale,
   allSales,
   returnSaleById,
   saleDate,
+  saleInsert,
 };

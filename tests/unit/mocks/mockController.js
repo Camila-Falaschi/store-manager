@@ -18,6 +18,11 @@ const newProduct = {
   name: "ProdutoX",
 };
 
+const newProductDetails = {
+  id: 1,
+  name: "Martelo do Batman",
+};
+
 const returnServiceAllProducts = {
   status: 200,
   message: products,
@@ -31,6 +36,11 @@ const returnServiceByProductId = {
 const returnServiceNewProduct = {
   status: 200,
   message: newProduct,
+};
+
+const returnServiceUpdatedProduct = {
+  status: 200,
+  message: newProductDetails,
 };
 
 const newSale = {
@@ -98,9 +108,11 @@ const returnServiceSalesById = {
 
 module.exports = {
   newProduct,
+  newProductDetails,
   returnServiceAllProducts,
   returnServiceByProductId,
   returnServiceNewProduct,
+  returnServiceUpdatedProduct,
   newSale,
   returnServiceNewSale,
   returnServiceAllSales,

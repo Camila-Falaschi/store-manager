@@ -7,12 +7,8 @@ chai.use(sinonChai);
 
 const productsService = require("../../../src/services/productsService");
 const productsController = require("../../../src/controllers/productsController");
-const {
-  newProduct,
-  returnServiceAllProducts,
-  returnServiceByProductId,
-  returnServiceNewProduct,
-} = require("../mocks/mockController");
+const { newProduct, newProductDetails, returnServiceAllProducts, returnServiceByProductId,
+  returnServiceNewProduct, returnServiceUpdatedProduct } = require("../mocks/mockController");
 
 describe("Testes de unidade do controller de produtos", function () {
   describe("Listando produtos", function () {
@@ -63,6 +59,28 @@ describe("Testes de unidade do controller de produtos", function () {
 
       expect(res.status).to.have.been.calledWith(201);
       expect(res.json).to.have.been.calledWith(returnServiceNewProduct.message);
+    });
+  });
+
+  describe("Atualizando detalhes de um produto", function () {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it("Atualizando um produto", async function () {
+      const res = {};
+      const req = {
+        params: { id: newProductDetails.id },
+        body: { name: newProductDetails.name },
+      };
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon.stub(productsService, "updateProductDetail").resolves(returnServiceUpdatedProduct);
+
+      await productsController.updateProductDetail(req, res);
+
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith(returnServiceUpdatedProduct.message);
     });
   });
 

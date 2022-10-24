@@ -23,6 +23,24 @@ const newProduct = {
   name: "ProdutoX",
 };
 
+const productUpdated = [
+  {
+    fieldCount: 0,
+    affectedRows: 1,
+    insertId: 0,
+    info: "Rows matched: 1  Changed: 1  Warnings: 0",
+    serverStatus: 2,
+    warningStatus: 0,
+    changedRows: 1,
+  },
+  undefined,
+];
+
+const newProductDetails = {
+  id: 1,
+  name: "Martelo do Batman",
+};
+
 const saleDetails = {
   saleId: 3,
   productId: 1,
@@ -77,12 +95,27 @@ const returnSaleById = [
   },
 ];
 
+const saleInsert = [
+  {
+    fieldCount: 0,
+    affectedRows: 1,
+    insertId: 0,
+    info: "",
+    serverStatus: 2,
+    warningStatus: 0,
+  },
+  undefined,
+];
+
 module.exports = {
   products,
   productDetail,
   newProduct,
+  productUpdated,
+  newProductDetails,
   saleDetails,
   newSale,
   allSales,
   returnSaleById,
+  saleInsert,
 };
