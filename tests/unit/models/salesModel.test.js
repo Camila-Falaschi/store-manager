@@ -4,7 +4,8 @@ const sinon = require("sinon");
 const connection = require("../../../src/models/connection");
 const salesModel = require("../../../src/models/salesModel");
 
-const { newSales, saleDetails } = require("../mocks/mockModel");
+const { newSales, saleDetails, allSales,
+  returnSaleById, saleDate } = require("../mocks/mockModel");
 
 describe("Testes de unidade do model de vendas", function () {
   describe("Cadastrando vendas", async function () {
@@ -34,6 +35,36 @@ describe("Testes de unidade do model de vendas", function () {
       const result = await salesModel.findBySaleId(saleDetails.saleId);
 
       expect(result).to.equal(newSales);
+    });
+  })
+
+  describe("Listando detalhes de venda", function () {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it("Listando todas as vendas", async function () {
+      sinon.stub(connection, "execute").resolves([allSales]);
+
+      const result = await salesModel.getAllSalesDetails();
+
+      expect(result).to.be.deep.equal(allSales);
+    })
+
+    it("Listando vendas por Id", async function () {
+      sinon.stub(connection, "execute").resolves([returnSaleById]);
+
+      const result = await salesModel.getSalesDetailsById(2);
+
+      expect(result).to.be.deep.equal(returnSaleById);
+    });
+
+    it("Listando datas das vendas por Id", async function () {
+      sinon.stub(connection, "execute").resolves([saleDate]);
+
+      const result = await salesModel.getSaleDate(2);
+
+      expect(result).to.be.deep.equal(saleDate);
     });
   })
 });

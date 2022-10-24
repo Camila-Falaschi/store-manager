@@ -1,6 +1,39 @@
 const camelize = require('camelize');
 const connection = require('./connection');
 
+const getAllSalesDetails = async () => {
+  const [result] = await connection.execute(
+    `SELECT details.sale_id, sales_date.date, details.product_id, details.quantity 
+    FROM StoreManager.sales_products AS details
+    INNER JOIN StoreManager.sales AS sales_date
+    ON details.sale_id = sales_date.id;`,
+  );
+
+  return camelize(result);
+};
+
+const getSalesDetailsById = async (id) => {
+  const [result] = await connection.execute(
+    `SELECT sales_date.date, details.product_id, details.quantity 
+    FROM StoreManager.sales_products AS details
+    INNER JOIN StoreManager.sales AS sales_date
+    ON details.sale_id = sales_date.id
+    WHERE sale_id = ?;`,
+    [id],
+  );
+
+  return camelize(result);
+};
+
+const getSaleDate = async (id) => {
+  const [result] = await connection.execute(
+    'SELECT * FROM StoreManager.sales WHERE id = ?;',
+    [id],
+  );
+
+  return result;
+};
+
 const findBySaleId = async (id) => {
   const [result] = await connection.execute(
     `SELECT product_id, quantity FROM StoreManager.sales_products WHERE sale_id = ?
@@ -27,6 +60,9 @@ const insertSaleDetails = async (saleId, productId, quantity) => {
 };
 
 module.exports = {
+  getAllSalesDetails,
+  getSalesDetailsById,
+  getSaleDate,
   findBySaleId,
   insertNewSaleDate,
   insertSaleDetails,
